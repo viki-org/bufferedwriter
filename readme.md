@@ -15,14 +15,14 @@ Install using the "go get" command:
 ### Usage
 Create a new `Buffer` instance and `Write` to it:
 
-    var buffer = bufferedwriter.New(Configure())
+    var buffer = bufferedwriter.New(bufferedwriter.Configure())
     ...
     buffer.Write(myReadCloser)
 
 ### Configuration
 The buffer is configured via a fluent interface:
 
-    buffer := bufferedwriter.New(Configure().Size(65536).Prefix("hits_"))
+    buffer := bufferedwriter.New(bufferedwriter.Configure().Size(65536).Prefix("hits_"))
 
 Possible configuration options:
 
