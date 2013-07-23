@@ -34,6 +34,10 @@ func newWorker(id int, channel chan io.ReadCloser, configuration *Configuration)
   if w.fileRoot[len(w.fileRoot)-1:] != "/" {
     w.fileRoot += "/"
   }
+
+  if w.fileTemp[len(w.fileTemp)-1:] != "/" {
+    w.fileTemp += "/"
+  }
   w.fileRoot += configuration.prefix + idString + "_"
   w.fileTemp += configuration.prefix + idString + ".tmp"
   return w
@@ -55,8 +59,8 @@ func (w *Worker) process(message io.ReadCloser) {
     w.length += read
     if err == io.EOF {
       if w.length == w.capacity || swapped {
-        w.swap() 
-        w.save() 
+        w.swap()
+        w.save()
       }
       break
     }
